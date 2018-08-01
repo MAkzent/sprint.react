@@ -7,6 +7,14 @@ export default class AllPhotos extends Component {
   }
 
   render() {
-    return <div />;
+    return (
+      <div>
+        {this.props.photos.map((photo) => {
+          
+          return <img src={"https://react.sprint.s3.amazonaws.com/"+photo.Key} />;
+        })}
+        {/* {console.log(this.props.photos)} */}
+      </div>
+    );
   }
 }
