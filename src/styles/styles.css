@@ -6,12 +6,19 @@ body {
   color: blue;
 }
 
+.all__photos {
+  text-align: center;
+}
+
 .imageCell {
   display: inline;
-  margin: 10px;
+  margin: 5px 2px;
 }
 
 .image {
+  object-fit: cover;
+  width: 200px;
+  height: 200px;
   cursor: pointer;
 }
 

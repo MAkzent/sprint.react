@@ -12,8 +12,11 @@ export default class Navbar extends Component {
   render() {
     return (
       <div className="navbar">
+        <div className="navbar-header">
+          <button onClick={this.props.togglePhotoView}>HOME</button>
+        </div>
         <Upload />
       </div>
-    )
+    );
   }
 }

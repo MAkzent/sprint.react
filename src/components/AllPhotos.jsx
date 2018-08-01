@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import _ from "lodash";
 
 export default class AllPhotos extends Component {
   constructor(props) {
@@ -8,10 +7,16 @@ export default class AllPhotos extends Component {
 
   render() {
     return (
-      <div>
+      <div className="all__photos">
         {this.props.photos.map((photo) => {
-          
-          return <img src={"https://react.sprint.s3.amazonaws.com/"+photo.Key} />;
+          return (
+            <div className="imageCell" onClick={this.props.onSinglePhotoClick.bind(null, photo.Key)}>
+              <img
+                className="image"
+                src={"https://react.sprint.s3.amazonaws.com/" + photo.Key}
+              />
+            </div>
+          );
         })}
         {/* {console.log(this.props.photos)} */}
       </div>
