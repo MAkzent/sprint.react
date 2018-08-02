@@ -1,5 +1,7 @@
 body {
+  padding-top: 90px;
   margin: 0;
+  background-color: rgb(243, 239, 231);
 }
 
 .navText {
@@ -7,12 +9,12 @@ body {
 }
 
 .all__photos {
+  margin-top: 30px;
   text-align: center;
 }
 
 .imageCell {
   display: inline;
-  margin: 5px 2px;
 }
 
 .image {
@@ -20,8 +22,19 @@ body {
   width: 200px;
   height: 200px;
   cursor: pointer;
+  margin: 20px 20px;
 }
 
 .single-photo {
-  width: 100%;
+  width: 400px;
+  height: auto;
+}
+
+.single-photo-wrapper {
+  text-align: center;
+  margin-top: 100px;
+}
+
+::-webkit-scrollbar { 
+  display: none; 
 }

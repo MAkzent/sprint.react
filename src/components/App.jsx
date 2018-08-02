@@ -12,7 +12,7 @@ export default class App extends Component {
     this.state = {
       currentView: "all",
       photos: [],
-      selectedPhoto: "01_400x400.jpg",
+      selectedPhoto: "",
     };
   }
 
@@ -25,7 +25,7 @@ export default class App extends Component {
   componentDidMount() {
     console.log(this);
     listObjects().then((photos) => {
-      this.setState({ photos: photos });
+      this.setState({ photos });
     });
   }
 
@@ -34,14 +34,17 @@ export default class App extends Component {
     this.setState({ selectedPhoto: photo });
     // currentView = "one"
     this.setState({ currentView: "one" });
-  }
+  };
 
   render() {
     return (
       <div className="app">
         <Navbar togglePhotoView={this.togglePhotoView} />
         {this.state.currentView === "all" ? (
-          <AllPhotos photos={this.state.photos} onSinglePhotoClick={this.onSinglePhotoClick}/>
+          <AllPhotos
+            photos={this.state.photos}
+            onSinglePhotoClick={this.onSinglePhotoClick}
+          />
         ) : (
           <SinglePhoto selected={this.state.selectedPhoto} />
         )}

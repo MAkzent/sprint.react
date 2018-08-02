@@ -8,12 +8,15 @@ export default class AllPhotos extends Component {
   render() {
     return (
       <div className="all__photos">
-        {this.props.photos.map((photo) => {
+        {this.props.photos.map((photo, i) => {
           return (
-            <div className="imageCell" onClick={this.props.onSinglePhotoClick.bind(null, photo.Key)}>
+            <div
+              className="imageCell"
+              onClick={this.props.onSinglePhotoClick.bind(null, photo.Key)}
+            >
               <img
                 className="image"
-                src={"https://react.sprint.s3.amazonaws.com/" + photo.Key}
+                src={"http://react.sprint.s3.amazonaws.com/" + photo.Key}
               />
             </div>
           );
