@@ -1,22 +1,17 @@
 import React, { Component } from "react";
 
 export default class AllPhotos extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="all__photos">
-        {this.props.photos.map((photo, i) => {
+        {this.props.photos.map((photo) => {
           return (
-            <div
-              className="imageCell"
-              onClick={this.props.onSinglePhotoClick.bind(null, photo.Key)}
-            >
+            <div key={photo.Key} className="imageCell">
               <img
                 className="image"
                 src={"http://react.sprint.s3.amazonaws.com/" + photo.Key}
+                alt={photo.Key}
+                onClick={this.props.onSinglePhotoClick.bind(null, photo.Key)}
               />
             </div>
           );
