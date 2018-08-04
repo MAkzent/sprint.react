@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import Upload from "./Upload";
-const _ = require("lodash");
 
 import "../styles/navbar.css";
 
 export default class Navbar extends Component {
-
-
   render() {
     return (
       <div className="navbar">
