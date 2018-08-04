@@ -1,22 +1,24 @@
 import { connect } from "react-redux";
-import App from "../components/App";
-import { getAWSImages } from "../index";
+import AllPhotos from "../components/AllPhotos";
 
 const mapStateToProps = (state) => {
   return {
-    currentView: state.currentView,
     photos: state.photos,
-    selectedPhoto: state.selectedPhoto,
+    currentView: state.currentView,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    storePhotos: () => dispatch(getAWSImages()),
+    onSinglePhotoClick: (photo) =>
+      dispatch({
+        type: "TRIGGER_SINGLE_PHOTO",
+        photo,
+      }),
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(App);
+)(AllPhotos);

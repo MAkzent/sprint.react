@@ -16,3 +16,10 @@
   font-size: 1.6em;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.homeButton {
+  border: none;
+  background: none;
+  color: white;
+  font-size: 1em;
+}

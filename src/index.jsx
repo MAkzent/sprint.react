@@ -5,24 +5,7 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import AppLink from "./containers/AppLink";
 import thunk from "redux-thunk";
-import { listObjects } from "../utils/index";
-
-const getPhotosFromAWS = () => {
-  return listObjects();
-};
-
-const storePhotos = (photos) => {
-  return {
-    type: "STORE_PHOTOS",
-    photos,
-  };
-};
-
-const showPhotosOnLoad = () => {
-  return function(dispatch) {
-    return getPhotosFromAWS().then((photos) => dispatch(storePhotos(photos)));
-  };
-};
+import { listObjects } from "./utils/index";
 
 const initialState = {
   currentView: "all",
@@ -32,21 +15,47 @@ const initialState = {
 
 // Actions
 
+const storePhotos = (photos) => {
+  return {
+    type: "STORE_PHOTOS",
+    photos,
+  };
+};
+
+export function getAWSImages() {
+  return function(dispatch) {
+    return listObjects().then((photos) => {
+      const allPhotos = photos.map((photo) => {
+        return photo.Key;
+      });
+      dispatch(storePhotos(allPhotos));
+    });
+  };
+}
+
 // Reducer
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "TOGGLE_PHOTO_VIEW": {
-      console.log("Photo has been toggled");
-      return;
+      return {
+        currentView: "all",
+        photos: state.photos,
+        selectedPhoto: state.selectedPhoto,
+      };
     }
     case "STORE_PHOTOS": {
-      const photos = state.photos;
-      let clone = [...photos];
-      clone = action.photos;
+      const newPhotos = action.photos;
       return {
-        currentview: state.currentView,
-        photos: clone,
+        currentView: state.currentView,
+        photos: newPhotos,
         selectedPhoto: state.selectedPhoto,
+      };
+    }
+    case "TRIGGER_SINGLE_PHOTO": {
+      return {
+        currentView: "single",
+        photos: state.photos,
+        selectedPhoto: action.photo,
       };
     }
   }

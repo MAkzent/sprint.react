@@ -1,19 +1,22 @@
 import React, { Component } from "react";
 import Upload from "./Upload";
-const _ = require("lodash");
 
 import "../styles/navbar.css";
 
 export default class Navbar extends Component {
-
-
   render() {
     return (
       <div className="navbar">
         <div className="navbar-header">
-          <span onClick={this.props.togglePhotoView}>HOME</span>
+          <button
+            className="homeButton"
+            onClick={this.props.togglePhotoView}
+            onKeyDown={this.props.togglePhotoView}
+          >
+            HOME
+          </button>
         </div>
-        <Upload uploadedImage={this.getUploadedImage} />
+        <Upload />
       </div>
     );
   }
