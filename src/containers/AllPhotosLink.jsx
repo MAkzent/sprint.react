@@ -8,4 +8,17 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(AllPhotos);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSinglePhotoClick: (photo) =>
+      dispatch({
+        type: "TRIGGER_SINGLE_PHOTO",
+        photo,
+      }),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AllPhotos);

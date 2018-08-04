@@ -4,18 +4,24 @@ export default class AllPhotos extends Component {
   render() {
     return (
       <div className="all__photos">
-       {/* this console.log returns an empty array of photos although they should be in there */}
-        {console.log(this.props)}
         {this.props.photos.map((photo) => {
-          return (
-            <div key={photo.Key} className="imageCell">
-              <img
-                className="image"
-                src={`http://react.sprint.s3.amazonaws.com/${photo.Key}`}
-                alt={photo.Key}
-              />
-            </div>
-          );
+          if (photo !== "attack-boo-courage-10qHa9JgyXYcw0.html") {
+            return (
+              <div
+                className="imageCell"
+                key={photo}
+                onClick={() => this.props.onSinglePhotoClick(photo)}
+                onKeyDown={() => this.props.onSinglePhotoClick(photo)}
+                role="imageCell"
+              >
+                <img
+                  className="image"
+                  src={`http://react.sprint.s3.amazonaws.com/${photo}`}
+                  alt={photo}
+                />
+              </div>
+            );
+          }
         })}
       </div>
     );

@@ -6,12 +6,13 @@ const mapStateToProps = (state) => {
   return {
     currentView: state.currentView,
     photos: state.photos,
+    selectedPhoto: state.selectedPhoto,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    storePhotos: dispatch(getAWSImages()),
+    storePhotos: () => dispatch(getAWSImages()),
   };
 };
 

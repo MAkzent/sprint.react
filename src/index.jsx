@@ -25,13 +25,10 @@ const storePhotos = (photos) => {
 export function getAWSImages() {
   return function(dispatch) {
     return listObjects().then((photos) => {
-      const cleanedPhotos = photos.map((photo) => {
-        if (photo.Key !== "attack-boo-courage-10qHa9JgyXYcw0.html") {
-          return photo.Key;
-        }
-        return "cateyes.jpeg";
+      const allPhotos = photos.map((photo) => {
+        return photo.Key;
       });
-      dispatch(storePhotos(cleanedPhotos));
+      dispatch(storePhotos(allPhotos));
     });
   };
 }
@@ -40,15 +37,25 @@ export function getAWSImages() {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "TOGGLE_PHOTO_VIEW": {
-      console.log("Photo has been toggled");
-      return;
+      return {
+        currentView: "all",
+        photos: state.photos,
+        selectedPhoto: state.selectedPhoto,
+      };
     }
     case "STORE_PHOTOS": {
       const newPhotos = action.photos;
       return {
-        currentview: state.currentView,
+        currentView: state.currentView,
         photos: newPhotos,
         selectedPhoto: state.selectedPhoto,
+      };
+    }
+    case "TRIGGER_SINGLE_PHOTO": {
+      return {
+        currentView: "single",
+        photos: state.photos,
+        selectedPhoto: action.photo,
       };
     }
   }
